@@ -16,8 +16,6 @@ Data frame with zero value padded at top
 Pad zero (at baseline) to dataset
 }
 \examples{
-dat <- formData(visits=1:4, times=visits, trtProfile=c(-3,rep(-4.5, length(visits)-1)),
-plaProfile=c(-2,rep(-3, length(visits)-1)))
-padzero(dat)
+padzero(sampleData)
 }
 

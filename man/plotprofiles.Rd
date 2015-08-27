@@ -4,7 +4,7 @@
 \alias{plotprofiles}
 \title{Plot longitudinal profiles}
 \usage{
-plotprofiles(data)
+plotprofiles(dat)
 }
 \arguments{
 \item{data}{Input data created by formData}
@@ -16,9 +16,7 @@ Longitudinal profile plot
 Plot longitudinal profiles
 }
 \examples{
-dat <- formData(visits=1:4, times=visits, trtProfile=c(-3,rep(-4.5, length(visits)-1)),
-plaProfile=c(-2,rep(-3, length(visits)-1)))
-dat2 <- padzero(dat)
+dat2 <- padzero(sampleData)
 plotprofiles(dat2)
 }
 

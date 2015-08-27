@@ -4,8 +4,7 @@
 \alias{formData}
 \title{Form a data frame based on user specified information}
 \usage{
-formData(visits = 1:6, times = visits, trtProfile = c(-3, rep(-4.5,
-  length(visits) - 1)), plaProfile = c(-2, rep(-3, length(visits) - 1)))
+formData(visits, times, trtProfile, plaProfile)
 }
 \arguments{
 \item{visits}{Vector of visit id variable}

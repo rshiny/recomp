@@ -20,9 +20,7 @@ Relative efficiency (RE) of the specified estimator, relative to the endpoint co
 Calculate relative efficiency
 }
 \examples{
-dat <- formData(visits=1:4, times=visits, trtProfile=c(-3,rep(-4.5, length(visits)-1)),
-plaProfile=c(-2,rep(-3, length(visits)-1)))
-dat2 <- padzero(dat)
+dat2 <- padzero(sampleData)
 calcRE(dat2, method="AUC")
 }
 

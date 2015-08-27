@@ -4,19 +4,19 @@
 #' @param method Method or estimator
 #' @param rho Correlation coefficient between visits
 #' @return Relative efficiency (RE) of the specified estimator, relative to the endpoint contrast (M_K)
-#' @export calRE
+#' @export calcRE
 #' @examples
 #'
-#' dat <- formData(visits=1:4, times=visits, trtProfile=c(-3,rep(-4.5, length(visits)-1)),
-#' plaProfile=c(-2,rep(-3, length(visits)-1)))
-#' dat2 <- padzero(dat)
+#' dat2 <- padzero(sampleData)
 #' calcRE(dat2, method="AUC")
 
 
 
 calcRE <- function(data, rho=0.5, method="M_KK") {
 
-  attach(data)
+  wide <- tidyr::spread(data=data, key=trt, value=y)
+
+  attach(wide)
   if(rho<0|rho>1)
     stop('Rho needs to be within [0,1]')
 
@@ -27,8 +27,8 @@ calcRE <- function(data, rho=0.5, method="M_KK") {
     stop('Unrecognized method, should be one of the following: "M_K", "M_KK", "Main", or "AUC"')
 
   K <- length(visits)
-  LY <- data.frame(Visit=c(0, visits), Time=c(0, times), Arm="LY", ChgLY=c(0, trtProfile))
-  PL <- data.frame(Arm="PL", ChgPL=c(0, plaProfile))
+  LY <- data.frame(Visit=c(0, visits), Time=c(0, times), Arm="LY", ChgLY=c(0, TRT))
+  PL <- data.frame(Arm="PL", ChgPL=c(0, PLA))
   d <- cbind(LY, PL)
 
   LY <- as.numeric(d[-1,4])
@@ -60,7 +60,7 @@ calcRE <- function(data, rho=0.5, method="M_KK") {
     RE4_den <- sqrt(w[K]^2/4 + sum((head(w,-1))^2) + 2*rho*tmp +  rho*w[K]*sum(head(w,-1)))
     RE <- RE4_num/RE4_den
   }
-  detach(data)
+  detach(wide)
   return(RE)
 }
 

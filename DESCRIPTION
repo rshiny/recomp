@@ -6,7 +6,5 @@ Date: 2015-08-26
 Author: Xiao Ni.
 Maintainer: Xiao Ni <nixi@lilly.com>
 Description: Relative efficiency
-License: GLP-3
-Imports:
-    ggplot2,
-    tidyr
+Depends: ggplot2 (>= 1.0.0), tidyr
+License: MIT
